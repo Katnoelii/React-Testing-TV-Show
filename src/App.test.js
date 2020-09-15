@@ -547,8 +547,15 @@ const mockData = {
 jest.mock('./api/fetchShow');
 
 test('test asynchronous API call', async () => {
-    mockFetchShow.mockResolvedValueOnce(mockData);
+    mockFetchShow.mockResolvedValueOnce(mockData)
     render(<App />)
-    expect(await screen.findByText(/1983 Indiana/i)).toBeInTheDocument();
+    expect(await screen.findByText(/1983 Indiana/i)).toBeInTheDocument()
+})
+
+test('renders episode list when the dropdown is clicked', async () => {
+    mockFetchShow.mockResolvedValueOnce(mockData)
+    render(<App />)
+    screen.debug()
+    expect(await screen.findByText(/1983 Indiana/i)).toBeInTheDocument()
     fireEvent.click(screen.getByText(/select a season/i))
 })
